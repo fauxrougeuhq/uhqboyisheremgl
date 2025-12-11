@@ -8,7 +8,7 @@
 *{ box-sizing:border-box; margin:0; padding:0; }
 html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
 
-/* ---------- BACKGROUND VIDEO ---------- */
+
 .bg-video{
   position: fixed;
   inset: 0;
@@ -28,7 +28,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   pointer-events: none;
 }
 
-/* ---------- NEIGE ---------- */
+
 .snow-canvas{
   position: fixed;
   inset: 0;
@@ -40,7 +40,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   mix-blend-mode: screen;
 }
 
-/* ---------- PARTICULES SOURIS ---------- */
+
 .mouse-canvas{
   position: fixed;
   inset: 0;
@@ -51,7 +51,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   opacity: .9;
 }
 
-/* ---------- ENTER SCREEN ---------- */
+
 .enter-overlay{
   position: fixed;
   inset: 0;
@@ -81,7 +81,6 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   opacity:.8;
 }
 
-/* ---------- VOLUME TOP RIGHT ---------- */
 .volume-ui{
   position: fixed;
   top: 14px;
@@ -117,7 +116,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   cursor: pointer;
 }
 
-/* ---------- UI ---------- */
+
 .ui{
   position: relative;
   width: 100%;
@@ -128,7 +127,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   z-index: 2;
 }
 
-/* PROFIL (absolute comme avant) */
+
 .profile{
   position: absolute;
   top: 22%;
@@ -176,7 +175,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
 }
 @keyframes blink{ 0%,100%{opacity:0} 50%{opacity:1} }
 
-/* CARDS ROW (absolute comme ta version qui marchait) */
+
 .cards-row{
   position: absolute;
   top: 46%;
@@ -187,7 +186,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   z-index: 3;
 }
 
-/* cards taille fixe => jamais cassées */
+
 .glass-card{
   width: 300px;
   height: 78px;
@@ -259,7 +258,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   width: max-content;
 }
 
-/* SOCIALS */
+
 .socials-row{
   position: absolute;
   top: 68%;
@@ -281,7 +280,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   transform: translateY(-1px);
 }
 
-/* META */
+
 .meta{
   position: absolute;
   top: 76%;
@@ -295,7 +294,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
 .meta-item{ display:flex; gap:6px; align-items:center; }
 .meta-sep{ opacity:.5; }
 
-/* --------- Glow global --------- */
+
 .ui, .ui *{
   color:#fff !important;
   text-shadow:
@@ -304,7 +303,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
     0 0 18px rgba(255,255,255,0.25);
 }
 
-/* --------- Shimmer (optionnel) --------- */
+
 .shimmer{
   background: linear-gradient(
     90deg,
@@ -325,7 +324,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   100%{ background-position: -200% 0; }
 }
 
-/* RESPONSIVE */
+
 @media (max-width: 700px){
   .profile{ top: 16%; }
   .cards-row{
@@ -338,7 +337,7 @@ html, body{ height:100%; width:100%; overflow:hidden; background:#000; }
   .meta{ left: 8%; top: 82%; }
 }
 
-/* ===== SOCIAL SVG ICONS ===== */
+
 .social-link{
   display: inline-flex;
   align-items: center;
