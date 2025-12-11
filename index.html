@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>@𝓯𝓪𝓾𝔁𝓻𝓸𝓾𝓰𝓮</title>
+  <link rel="stylesheet" href="style.css" />
+  <base href="./">
+  <!-- enlève le 404 favicon -->
+  <link rel="icon" href="data:,">
+</head>
+<body>
+
+  <!-- VIDEO BACKGROUND -->
+  <video id="bgVideo" class="bg-video" autoplay loop muted playsinline preload="auto">
+    <source src="./assets/bg.mp4" type="video/mp4" />
+  </video>
+
+  <!-- assombrissement -->
+  <div class="overlay"></div>
+
+  <!-- NEIGE -->
+  <canvas id="snowCanvas" class="snow-canvas"></canvas>
+
+  <!-- PARTICULES SOURIS -->
+  <canvas id="mouseCanvas" class="mouse-canvas"></canvas>
+
+  <!-- MUSIC -->
+  <audio id="bgAudio" src="./assets/music.mp3" loop preload="auto"></audio>
+
+  <!-- VOLUME TOP RIGHT -->
+  <div class="volume-ui" aria-hidden="true">
+    <span class="vol-icon">🔊</span>
+    <div class="vol-bar">
+      <div class="vol-fill" id="volFill"></div>
+      <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.35">
+    </div>
+  </div>
+
+  <!-- ENTER OVERLAY (NOIR OPAQUE + CROIX) -->
+  <div class="enter-overlay" id="enterOverlay">
+    <button class="enter-btn" id="enterBtn">♰</button>
+  </div>
+
+  <!-- UI -->
+  <main class="ui" id="ui">
+
+    <!-- PROFIL -->
+    <section class="profile">
+      <img class="avatar-big" src="./assets/avatar.gif" alt="avatar">
+
+      <div class="profile-text">
+        <div class="name-row">
+          <h1 class="username shimmer">𝓯𝓪𝓾𝔁𝓻𝓸𝓾𝓰𝓮</h1>
+          <div class="mini-icons">
+            <span>●</span><span>♡</span><span>✦</span><span>$</span><span>♣</span>
+          </div>
+        </div>
+
+        <!-- subtitle typewriter -->
+        <p class="subtitle shimmer" id="subtitle"></p>
+      </div>
+    </section>
+
+    <!-- 2 CARDS AU MILIEU -->
+    <section class="cards-row">
+
+      <!-- DISCORD LIVE CARD -->
+      <div class="glass-card" id="discordCard">
+        <img class="avatar-small" id="discordAvatar" src="./assets/avatar.gif" alt="">
+        <div class="card-text">
+          <div class="card-title" id="discordName">Discord</div>
+          <div class="card-sub" id="discordLine">loading...</div>
+        </div>
+        <div class="status-dot" id="discordDot"></div>
+      </div>
+
+      <!-- YOUTUBE SUBS ONLY CARD -->
+      <div class="glass-card" id="ytCard">
+        <img class="avatar-small" src="./assets/avatar.gif" alt="">
+        <div class="card-text">
+          <div class="card-title">YouTube</div>
+          <div class="card-sub" id="ytSubs">loading...</div>
+          <a class="pill-btn" id="ytBtn" href="#" target="_blank" rel="noreferrer">View Channel</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SOCIALS -->
+<section class="socials-row">
+
+ 
+  <a href="#" target="_blank" aria-label="TikTok" class="social-link">
+    <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74a2.89 2.89 0 0 1 2.31-4.64a2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+      <path d="M14 3c.6 2.7 2.6 4.5 5.3 4.7v2.1c-2 0-3.8-.7-5.3-2v6.4a5.9 5.9 0 1 1-5.7-5.9c.4 0 .8 0 1.2.1v2.2a3.7 3.7 0 1 0 2.3 3.4V3h2.2Z"/>
+    </svg>
+  </a>
+
+  
+  <a href="#" target="_blank" aria-label="X" class="social-link">
+    <svg viewBox="0 0 24 24" class="social-icon" aria-hidden="true">
+      <path d="m20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42l10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001l-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15l4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
+    </svg>
+  </a>
+
+  <a href="https://stake.bz/?offer=fauxrouge&amp;c=kMDU9WvE" target="_blank" class="social-link" aria-label="Stake">
+  <img src="./assets/stake.webp" class="social-icon-img stake-icon" alt="Stake">
+</a>
+
+
+</section>
+
+
+    <!-- META BAS GAUCHE -->
+    <section class="meta">
+      <div class="meta-item">👁 <span id="views">0</span></div>
+      <div class="meta-sep">|</div>
+      <div class="meta-item">📍 France</div>
+    </section>
+
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
