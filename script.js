@@ -8,7 +8,6 @@ const volFill = document.getElementById("volFill");
 const bgVideo = document.getElementById("bgVideo");
 const ui = document.getElementById("ui");
 
-/* ---- ENTER ---- */
 function enterSite() {
   if (enterOverlay) {
     enterOverlay.classList.add("hidden");
@@ -28,7 +27,6 @@ if (enterOverlay) {
   enterOverlay.addEventListener("click", enterSite);
 }
 
-/* ---- VOLUME ---- */
 function setVolume(v) {
   if (audio) {
     audio.volume = v;
@@ -43,7 +41,6 @@ if (volumeSlider) {
   volumeSlider.addEventListener("input", (e) => setVolume(Number(e.target.value)));
 }
 
-/* ---- VIEW COUNTER ---- */
 const viewsEl = document.getElementById("views");
 const COUNTER_NAMESPACE = "fauxrouge.info";
 const COUNTER_ACTION = "view";
@@ -77,7 +74,6 @@ async function updateViewCounter() {
 
 updateViewCounter();
 
-/* ---- PARALLAX UI ---- */
 window.addEventListener("mousemove", (e) => {
   if (!ui) return;
   const cx = window.innerWidth / 2;
@@ -88,7 +84,6 @@ window.addEventListener("mousemove", (e) => {
   ui.style.transform = `translate3d(${dx * strength}px, ${dy * strength}px, 0)`;
 });
 
-/* ---------- NEIGE ---------- */
 const snow = document.getElementById("snowCanvas");
 const ctxSnow = snow ? snow.getContext("2d") : null;
 let w;
@@ -140,7 +135,6 @@ if (snow && ctxSnow) {
   window.addEventListener("resize", resizeSnow);
 }
 
-/* ---------- PARTICULES SOURIS ---------- */
 const mouseCanvas = document.getElementById("mouseCanvas");
 const ctxMouse = mouseCanvas ? mouseCanvas.getContext("2d") : null;
 let mw;
@@ -224,7 +218,6 @@ if (mouseCanvas && ctxMouse) {
   drawMouseParticles();
 }
 
-/* ---------- TYPEWRITER SUBTITLE INFINI ---------- */
 const subtitleEl = document.getElementById("subtitle");
 const subtitleText = 'code "fauxrouge" on stake.com';
 const typeSpeed = 55;
@@ -265,7 +258,6 @@ function loopSubtitle() {
 
 loopSubtitle();
 
-/* ================= DISCORD (LANYARD) ================= */
 const DISCORD_ID = "977237185969410078";
 const discordNameEl = document.getElementById("discordName");
 const discordLineEl = document.getElementById("discordLine");
@@ -313,13 +305,9 @@ async function fetchDiscordPresence() {
 fetchDiscordPresence();
 setInterval(fetchDiscordPresence, 8000);
 
-/* ================= YOUTUBE (SUBS ONLY) ================= */
 const YT_CHANNEL_ID = "UCd9ThgV9m9ksRpLVit9JS3w";
 const YT_CHANNEL_URL = `https://www.youtube.com/channel/${YT_CHANNEL_ID}`;
 
-// 100% static mode for GitHub Pages:
-// - A GitHub Action writes ./data/youtube-subs.json using a repo secret key.
-// - The browser reads that JSON, no API key in frontend code.
 const YT_SUBS_ENDPOINT =
   typeof window.__YT_SUBS_ENDPOINT__ === "string" && window.__YT_SUBS_ENDPOINT__.trim()
     ? window.__YT_SUBS_ENDPOINT__.trim()
