@@ -42,33 +42,44 @@ if (volumeSlider) {
 }
 
 const viewsEl = document.getElementById("views");
-const COUNTER_NAMESPACE = "fauxrouge.info";
-const COUNTER_ACTION = "view";
-const COUNTER_KEY = "siteviews";
+const VIEWS_STORAGE_KEY = "fauxrouge_views";
 const LOCAL_HOSTS = new Set(["", "localhost", "127.0.0.1", "[::1]"]);
 
 async function updateViewCounter() {
   if (!viewsEl) return;
 
+  const cached = localStorage.getItem(VIEWS_STORAGE_KEY);
+  if (cached) {
+    viewsEl.textContent = Number(cached).toLocaleString("fr-FR");
+  }
+
   const host = window.location.hostname.toLowerCase();
-  const namespace = encodeURIComponent(COUNTER_NAMESPACE);
-  const action = encodeURIComponent(COUNTER_ACTION);
-  const key = encodeURIComponent(COUNTER_KEY);
-  const readOnly = LOCAL_HOSTS.has(host) ? "?readOnly=true" : "";
+  const isLocal = LOCAL_HOSTS.has(host);
 
   try {
-    const response = await fetch(`https://counterapi.com/api/${namespace}/${action}/${key}${readOnly}`, {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+
+    const endpoint = isLocal
+      ? "https://api.counterapi.dev/v1/fauxrouge.info/visits/up"
+      : "https://api.counterapi.dev/v1/fauxrouge.info/visits/up";
+
+    const response = await fetch(endpoint, {
+      signal: controller.signal,
       cache: "no-store"
     });
+    clearTimeout(timeout);
 
     if (!response.ok) {
       throw new Error(`Counter request failed with ${response.status}`);
     }
 
     const data = await response.json();
-    viewsEl.textContent = Number(data.value ?? data.count ?? 0).toLocaleString("fr-FR");
+    const count = Number(data.count ?? 0);
+    viewsEl.textContent = count.toLocaleString("fr-FR");
+    localStorage.setItem(VIEWS_STORAGE_KEY, String(count));
   } catch (error) {
-    console.error("Shared view counter unavailable:", error);
+    console.error("View counter unavailable:", error);
   }
 }
 
@@ -219,22 +230,28 @@ if (mouseCanvas && ctxMouse) {
 }
 
 const subtitleEl = document.getElementById("subtitle");
-const subtitleText = 'code "fauxrouge" on stake.com';
+const subtitleTexts = [
+  'code "fauxrouge" on stake.com',
+  "best discord shop /synapsis",
+  "discord.gg/synapsis"
+];
 const typeSpeed = 55;
 const eraseSpeed = 35;
 const holdAfterType = 1200;
 const holdAfterErase = 400;
 let subIndex = 0;
+let subTextIndex = 0;
 let subIsErasing = false;
 
 function loopSubtitle() {
   if (!subtitleEl) return;
+  const currentText = subtitleTexts[subTextIndex];
 
   if (!subIsErasing) {
-    subtitleEl.textContent = subtitleText.slice(0, subIndex + 1);
+    subtitleEl.textContent = currentText.slice(0, subIndex + 1);
     subIndex += 1;
 
-    if (subIndex === subtitleText.length) {
+    if (subIndex === currentText.length) {
       subIsErasing = true;
       setTimeout(loopSubtitle, holdAfterType);
       return;
@@ -244,11 +261,12 @@ function loopSubtitle() {
     return;
   }
 
-  subtitleEl.textContent = subtitleText.slice(0, subIndex - 1);
+  subtitleEl.textContent = currentText.slice(0, subIndex - 1);
   subIndex -= 1;
 
   if (subIndex === 0) {
     subIsErasing = false;
+    subTextIndex = (subTextIndex + 1) % subtitleTexts.length;
     setTimeout(loopSubtitle, holdAfterErase);
     return;
   }
