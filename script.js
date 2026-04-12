@@ -55,14 +55,13 @@ async function updateViewCounter() {
 
   const host = window.location.hostname.toLowerCase();
   const isLocal = LOCAL_HOSTS.has(host);
+  const endpoint = isLocal
+    ? "https://abacus.jasoncameron.dev/get/fauxrouge.info/views"
+    : "https://abacus.jasoncameron.dev/hit/fauxrouge.info/views";
 
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
-
-    const endpoint = isLocal
-      ? "https://api.counterapi.dev/v1/fauxrouge.info/visits/up"
-      : "https://api.counterapi.dev/v1/fauxrouge.info/visits/up";
 
     const response = await fetch(endpoint, {
       signal: controller.signal,
@@ -75,7 +74,7 @@ async function updateViewCounter() {
     }
 
     const data = await response.json();
-    const count = Number(data.count ?? 0);
+    const count = Number(data.value ?? 0);
     viewsEl.textContent = count.toLocaleString("fr-FR");
     localStorage.setItem(VIEWS_STORAGE_KEY, String(count));
   } catch (error) {
